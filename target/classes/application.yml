@@ -8,3 +8,5 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    generate-ddl: false
+    open-in-view: false

@@ -1,21 +1,23 @@
 package com.yao.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by Jack Yao on 2021/6/17 11:39 上午
  */
 @Entity/*數據模型類，不加就不會創建表*/
+@Table(name = "t_author")
 public class Author {
 
     @Id/*主鍵*/
     @GeneratedValue/*自動生成規則*/
     private Long id;
+    @Column(name = "nickName",insertable = false)
     private String nickName;
+    @Transient
     private String phone;
+    @Temporal(TemporalType.DATE)
     private Date signDate;
 
     /*空的建構子一定要有不然會有問題*/
