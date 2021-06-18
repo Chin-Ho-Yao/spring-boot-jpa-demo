@@ -1,5 +1,7 @@
 package com.yao.domain;
 
+import org.hibernate.annotations.GeneratorType;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ import java.util.Date;
 public class Author {
 
     @Id/*主鍵*/
-    @GeneratedValue/*自動生成規則*/
+    @GeneratedValue
     private Long id;
     private String nickName;
     private String phone;
