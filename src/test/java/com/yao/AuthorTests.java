@@ -3,6 +3,8 @@ package com.yao;
 import com.alibaba.fastjson.JSON;
 import com.yao.domain.Author;
 import com.yao.domain.AuthorRepository;
+import com.yao.domain.WallerRepository;
+import com.yao.domain.Wallet;
 import com.yao.service.AuthorService;
 import com.yao.service.AuthorServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -26,6 +29,9 @@ public class AuthorTests {
     private AuthorRepository authorRepository;
 
     @Autowired
+    private WallerRepository wallerRepository;
+
+    @Autowired
     private AuthorService authorService;
 
     @Test
@@ -34,20 +40,28 @@ public class AuthorTests {
         author.setNickName("Arvin");
         author.setPhone("1234567890");
         author.setSignDate(new Date());
+        author.setWallet(new Wallet(new BigDecimal(188.23)));
         authorRepository.save(author);
     }
+
     @Test
-    public void findAuthorTest(){
-//        List<Author> authors = authorRepository.findByPhoneAndNickName("1234567890","Arvin");
-//        List<Author> authors = authorRepository.findDistinctByNickNameIgnoreCaseOrPhoneOrderBySignDateDesc("Arvin","1234567890");
-//        List<Author> authors = authorRepository.findByNickName("楊", Sort.by(Sort.Direction.ASC,"signDate"));
-
-//        List<Author> authors = authorRepository.findbySql("楊");
-//        int i = authorRepository.setNickName("小龍女","1234567898");
-
-//        System.out.println(JSON.toJSONString(authors, true));
+    @Transactional
+    public void updateAuthor(){
+        Author author = authorService.findAuthor(4L);
+        author.setPhone("11111111111");
+        authorRepository.save(author);
 
     }
+
+
+    @Test
+    @Transactional
+    public void findAuthorTest(){
+        Author author = authorService.findAuthor(4L);
+        System.out.println(JSON.toJSONString(author,true));
+    }
+
+
 
     @Test
     public void findAuthorForPageTest(){
@@ -62,7 +76,18 @@ public class AuthorTests {
     }
 
     @Test
+    public void deleteAuthorTest(){
+        authorService.deleteAuthor(4L);
+    }
+
+    @Test
     public void transactionalTest(){
         authorService.updateAuthor();
+    }
+
+    @Test
+    public void findWalletTest(){
+        Wallet wallet = wallerRepository.findById(1L).get();
+        System.out.println(JSON.toJSONString(wallet,true));
     }
 }

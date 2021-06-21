@@ -18,8 +18,6 @@ public class AuthorServiceImpl implements AuthorService{
     @Autowired
     private AuthorRepository authorRepository;
 
-    @Autowired
-
     @Override
     @Transactional
     public Author updateAuthor() {
@@ -31,6 +29,26 @@ public class AuthorServiceImpl implements AuthorService{
         author1.setPhone("11111111234561");/*id值不為空就會變成更新而不是保存*/
         Author author2 = authorRepository.save(author1);
         return author2;
+    }
+
+    @Override
+    public Author saveAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public Author updateAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public Author findAuthor(Long id) {
+        return authorRepository.getById(id);
+    }
+
+    @Override
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
     }
 
 
