@@ -51,10 +51,9 @@ public class ArticleTests {
     @Transactional
     public void updateArticle(){
         /*改內容就好，級聯不用改*/
-        Article article = articleService.findArticle(2L);
+        Article article = articleService.findArticle(5L);
         article.setContent("猶記得一些所見所聞");
         articleService.saveArticle(article);
-        System.out.println(JSON.toJSONString(article.getContent(),true));
     }
 
     @Test
@@ -69,9 +68,7 @@ public class ArticleTests {
     }
 
     @Test
-    @Transactional
     public void deleteArticle(){
-        articleService.findArticle(2L);
         articleService.deleteArticle(2L);
 
     }

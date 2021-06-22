@@ -52,11 +52,11 @@ public class Article {
         this.content = content;
     }
 
-    public List<Comment> getComment() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComment(List<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 }

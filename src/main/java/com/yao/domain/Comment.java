@@ -18,6 +18,11 @@ public class Comment {
     @ManyToOne
     private Article article;
 
+    /*用來清除關係*/
+    public void clearComment(){
+        this.getArticle().getComments().remove(this);
+    }
+
     public Comment() {
     }
 
