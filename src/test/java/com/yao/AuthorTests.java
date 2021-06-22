@@ -47,7 +47,7 @@ public class AuthorTests {
     @Test
     @Transactional
     public void updateAuthor(){
-        Author author = authorService.findAuthor(4L);
+        Author author = authorService.findAuthor(1L);
         author.setPhone("11111111111");
         authorRepository.save(author);
 
@@ -64,6 +64,7 @@ public class AuthorTests {
 
 
     @Test
+    @Transactional
     public void findAuthorForPageTest(){
         /*排序*/
         Sort sort = Sort.by(Sort.Direction.DESC,"id");
